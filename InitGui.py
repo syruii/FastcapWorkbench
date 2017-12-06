@@ -1,7 +1,8 @@
+
 class FastCapWorkBench(Workbench):
     MenuText = "Fastcap Workbench"
     ToolTip = "Contains tool to process meshes for input into Fastcap"
-    Icon = 'icons/fastcapWorkbenchIcon.png'
+    Icon = FreeCAD.getUserAppDataDir()+"Mod" + "/Fastcap/icons/fastcapWorkbenchIcon.png"
 
     def Initialize(self):
         "This function is executed when FreeCAD starts"
