@@ -1,7 +1,6 @@
 import FreeCAD, FreeCADGui
 import os
 from Fastcap_dummy import path_icons
-from PySide import QtGui
 import exportMeshWidget #todo
 
 class exportMeshCmd:
