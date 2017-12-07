@@ -24,25 +24,24 @@ class importMeshCmd:
             try:
                 file = open(openName, "r")
                 try:
-                    doc = App.activeDocument()
-                    m = Mesh.mesh()
+                    doc = FreeCAD.activeDocument()
+                    if doc is None:
+                        raise RuntimeError('No active document')
+                    m = Mesh.Mesh()
                     lines = file.readlines()
-                    print "read files"
                     lines = [x for x in lines if x.startswith('Q') or x.startswith('T')]
                     #if you don't split via commented lines, the meshes may contain more than one component
                     for line in lines:
                         tokens = list(filter(None, line.split()))
-                        m.addFacet(tokens[2:10])
-                        print "adding facet"
+                        m.addFacet(*tokens[2:11])
                         if line.startswith('Q'):
                             # add the second triangle of the quadrilateral
-                            m.addFacet(tokens[5:13])
+                            m.addFacet(*tokens[5:14])
                     me = doc.addObject("Mesh::Feature", openName[:-3])
-                    print "added object"
                     me.Mesh = m
                     doc.recompute()
-                except Exception:
-                    FreeCAD.Console.PrintError("Error parsing the qui file")
+                except Exception, e:
+                    FreeCAD.Console.PrintError("Error parsing the qui file: " + str(e))
                 finally:
                     file.close()
             except Exception:
