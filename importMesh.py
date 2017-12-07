@@ -13,9 +13,9 @@ class importMeshCmd:
     def Activated(self):
         FreeCAD.Console.PrintMessage('Importing mesh')
         try:
-            openNames = QFileDialog.getOpenFileName(None, QString.fromLocal8Bit("Open a file qui"), path, "*.qui")
+            openNames = QFileDialog.getOpenFileNames(None, QString.fromLocal8Bit("Open a file qui"), path, "*.qui")
         except Exception:
-            openNames, _ = PySide.QtGui.QFileDialog.getOpenFileName(None, "Open a file text", path, "*.qui")
+            openNames, _ = PySide.QtGui.QFileDialog.getOpenFileNames(None, "Open a file text", path, "*.qui")
         
         if not openNames:
             FreeCAD.Console.PrintMessage("No files selected\n")
