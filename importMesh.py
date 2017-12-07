@@ -27,15 +27,18 @@ class importMeshCmd:
                     doc = App.activeDocument()
                     m = Mesh.mesh()
                     lines = file.readlines()
+                    print "read files"
                     lines = [x for x in lines if x.startswith('Q') or x.startswith('T')]
                     #if you don't split via commented lines, the meshes may contain more than one component
                     for line in lines:
                         tokens = list(filter(None, line.split()))
                         m.addFacet(tokens[2:10])
+                        print "adding facet"
                         if line.startswith('Q'):
                             # add the second triangle of the quadrilateral
                             m.addFacet(tokens[5:13])
                     me = doc.addObject("Mesh::Feature", openName[:-3])
+                    print "added object"
                     me.Mesh = m
                     doc.recompute()
                 except Exception:
