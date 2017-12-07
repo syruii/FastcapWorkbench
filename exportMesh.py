@@ -1,11 +1,11 @@
 import FreeCAD, FreeCADGui
 import os
 from Fastcap_dummy import path_icons
-import exportMeshWidget #todo
+import exportMeshWidget
 
 class exportMeshCmd:
     def Activated(self):
-        newDialog = exportMeshWidget.meshCreator()
+        self.newDialog = exportMeshWidget.meshCreator()
         # see https://freecadweb.org/wiki/Dialog_creation
         # dialog = QtGui.QFileDialog(
         #   QtGui.qApp.activeWindow(),
