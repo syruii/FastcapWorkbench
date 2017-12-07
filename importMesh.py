@@ -20,7 +20,7 @@ class importMeshCmd:
         if openName == "":
             FreeCAD.Console.PrintMessage("No file selected\n")
         else:
-            FreeCAD.Console.PrintMessage("Reading from " + saveName + "\n")
+            FreeCAD.Console.PrintMessage("Reading from " + openName + "\n")
             try:
                 file = open(openName, "r")
                 try:
@@ -30,7 +30,7 @@ class importMeshCmd:
                     lines = [x for x in lines if x.startswith('Q') or x.startswith('T')]
                     #if you don't split via commented lines, the meshes may contain more than one component
                     for line in lines:
-                        tokens = filter(None, line.split())
+                        tokens = list(filter(None, line.split()))
                         m.addFacet(tokens[2:10])
                         if line.startswith('Q'):
                             # add the second triangle of the quadrilateral
