@@ -7,6 +7,8 @@ from PySide.QtCore import *
 import Mesh
 import os
 
+path = FreeCAD.ConfigGet("UserAppData")
+
 class importMeshCmd:
     def Activated(self):
         FreeCAD.Console.PrintMessage('Importing mesh')
