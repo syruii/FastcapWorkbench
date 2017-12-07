@@ -1,7 +1,8 @@
-import FreeCad, FreeCADGui
+import FreeCAD, FreeCADGui
 from Fastcap_dummy import path_icons
-from Pyside import QtGui
+from PySide import QtGui
 import Mesh
+import os
 
 class importMeshCmd:
     def Activated(self):
@@ -11,7 +12,7 @@ class importMeshCmd:
         except Exception:
             openName, _ = PySide.QtGui.QFileDialog.getOpenFileName(None, "Open a file text", path, "*.qui")
         
-        if openName = "":
+        if openName == "":
             FreeCAD.Console.PrintMessage("No file selected\n")
         else:
             FreeCAD.Console.PrintMessage("Reading from " + saveName + "\n")
