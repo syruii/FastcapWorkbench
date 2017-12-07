@@ -1,6 +1,9 @@
 import FreeCAD, FreeCADGui
 from Fastcap_dummy import path_icons
-from PySide import QtGui
+import PySide
+from PySide import QtGui, QtCore
+from PySide.QtGui import *
+from PySide.QtCore import *
 import Mesh
 import os
 
