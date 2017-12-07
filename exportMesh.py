@@ -5,8 +5,7 @@ import exportMeshWidget #todo
 
 class exportMeshCmd:
     def Activated(self):
-        FreeCAD.Console.PrintMessage('Hello, World!')
-        newDialog = exportMeshWidth.meshCreator()
+        newDialog = exportMeshWidget.meshCreator()
         # see https://freecadweb.org/wiki/Dialog_creation
         # dialog = QtGui.QFileDialog(
         #   QtGui.qApp.activeWindow(),
@@ -25,3 +24,5 @@ class exportMeshCmd:
 FreeCADGui.addCommand('exportMesh_Cmd', exportMeshCmd())
 
 # Todo: add the actual command, and add dialog boxes to select options
+# Todo: the function should be able to take in a multiple selection of meshes and output to a single qui file
+# for completeness sake
