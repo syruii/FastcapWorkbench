@@ -97,5 +97,6 @@ class Ui_Dialog(QtGui.QDialog):
         self.outperm = self.outerPermBox.value
         self.surroundingperm = self.surroundingPermBox.value
         self.isConductor = True
+        self.accept()
 #Todo: Dialog closes immediately open being opened - garbage collected?
 #Might need to redesign as one class, instead of the UI being a member object of meshCreator
