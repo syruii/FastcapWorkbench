@@ -1,7 +1,7 @@
 import FreeCAD, FreeCADGui
 import os
 from Fastcap_dummy import path_icons
-from exportMeshWidget import Ui_Dialog()
+from exportMeshWidget import Ui_Dialog
 
 
 class exportMeshCmd:
@@ -20,7 +20,7 @@ class exportMeshCmd:
                     # add ui later to specify name, but currently just get name of first
                     # selected object
                     groupname = sel[0].Name
-                    file.write("G " + groupName + "\n")
+                    file.write("G " + groupname + "\n")
                     for obj in sel:
                         d = QtGui.QWidget()
                         ui = Ui_Dialog()
