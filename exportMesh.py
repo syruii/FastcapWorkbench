@@ -24,7 +24,7 @@ class exportMeshCmd:
                     for obj in sel:
                         d = QtGui.QWidget()
                         ui = Ui_Dialog()
-                        ui.setupUi(self.d, obj.Name)
+                        ui.setupUi(d, obj.Name)
                         d.show()
                         if d.exec_():
                             print(d.isConductor)
