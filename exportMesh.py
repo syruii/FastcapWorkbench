@@ -22,10 +22,16 @@ class exportMeshCmd:
                     # selected object
                     groupname = sel[0].Name
                     file.write("G " + groupname + "\n")
-                    for obj in sel:
+                    for i, ob in enumerate(sel):
                         dialog = Ui_Dialog(obj.Name)
                         if dialog.exec_():
                             print(dialog.isConductor)
+                            if i > 0:
+                                # if not the first line, append the '+' to the previous conductor definition
+                                file.write(" +\n")
+                            # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
+                    # finish the previous line
+                    file.write("\n")
                 except Exception, e:
                     FreeCAD.Console.PrintError("Error in generating the mesh or writing to the file: " + str(e))
                 finally:
