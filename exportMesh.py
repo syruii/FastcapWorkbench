@@ -2,6 +2,7 @@ import FreeCAD, FreeCADGui
 import os
 from Fastcap_dummy import path_icons
 from exportMeshWidget import Ui_Dialog
+from PySide import QtGui
 
 
 class exportMeshCmd:
@@ -22,12 +23,9 @@ class exportMeshCmd:
                     groupname = sel[0].Name
                     file.write("G " + groupname + "\n")
                     for obj in sel:
-                        d = QtGui.QWidget()
-                        ui = Ui_Dialog()
-                        ui.setupUi(d, obj.Name)
-                        d.show()
-                        if d.exec_():
-                            print(d.isConductor)
+                        dialog = Ui_Dialog(obj.Name)
+                        if dialog.exec_():
+                            print(dialog.isConductor)
                 except Exception, e:
                     FreeCAD.Console.PrintError("Error in generating the mesh or writing to the file: " + str(e))
                 finally:
@@ -47,7 +45,9 @@ class exportMeshCmd:
         # writing file subheading for writing list file
         # write function that appends appropriately
     def GetResources(self):
-        return {'Pixmap': os.path.join(path_icons, 'exportMeshIcon.png'), 'MenuText': 'Export mesh as qui', 'ToolTip': 'Exports the currently selected mesh to a fastcap compatible qui file'}
+        return {'Pixmap': os.path.join(path_icons, 'exportMeshIcon.png'), 'MenuText': 'Export mesh as qui', 'ToolTip': 'Exports the currently selected mesh to a fastcap 
+
+compatible qui file'}
 
 FreeCADGui.addCommand('exportMesh_Cmd', exportMeshCmd())
 
