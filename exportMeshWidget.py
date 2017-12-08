@@ -12,7 +12,7 @@ from PySide import QtGui
 from PySide import QtCore, QtGui
 
 class Ui_Dialog(object):
-    def setupUi(self, Dialog):
+    def setupUi(self, Dialog, currentFile):
         self.d = Dialog
         Dialog.setObjectName("Dialog")
         Dialog.resize(376, 258)
@@ -77,8 +77,8 @@ class Ui_Dialog(object):
         QtCore.QObject.connect(self.dielectricBox, QtCore.SIGNAL("accepted()"), self.create_conductor_interface)
         QtCore.QObject.connect(self.conductorBox, QtCore.SIGNAL("accepted()"), self.create_conductor_interface)
         # Todo: change this btw
-        #QtCore.QObject.connect(self.dielectricBox, QtCore.SIGNAL("rejected()"), self.hide)
-        #QtCore.QObject.connect(self.conductorBox, QtCore.SIGNAL("rejected()"), self.hide)
+        QtCore.QObject.connect(self.dielectricBox, QtCore.SIGNAL("rejected()"), self.hide)
+        QtCore.QObject.connect(self.conductorBox, QtCore.SIGNAL("rejected()"), self.hide)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -88,16 +88,19 @@ class Ui_Dialog(object):
         self.label.setText(QtGui.QApplication.translate("Dialog", "Innner surface permitivity", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Dialog", "Outer surface permitivity", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("Dialog", "Dielectric Interface", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_4.setText(QtGui.QApplication.translate("Dialog", "Currently selected file", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("Dialog", currentFile None, QtGui.QApplication.UnicodeUTF8))
 
     def create_conductor_interface(self):
-        pass
+        self.inperm = self.innerPermBox.value
+        self.outperm = self.outerPermBox.value
+        self.surroundingperm = self.surroundingPermBox.value
+        self.isConductor = True
 
 class meshCreator:
-    def __init__(self):
+    def __init__(self, currentFile):
         self.d = QtGui.QWidget()
         self.ui = Ui_Dialog()
-        self.ui.setupUi(self.d)
+        self.ui.setupUi(self.d, currentFile)
         self.d.show()
 #Todo: Dialog closes immediately open being opened - garbage collected?
 #Might need to redesign as one class, instead of the UI being a member object of meshCreator
