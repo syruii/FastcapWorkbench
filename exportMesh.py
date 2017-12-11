@@ -2,7 +2,6 @@ import FreeCAD, FreeCADGui, Mesh, Part, MeshPart
 import os
 from Fastcap_dummy import path_icons
 from exportMeshWidget import Ui_Dialog
-from PySide import QtGui
 import random
 from FreeCAD import Vector
 
