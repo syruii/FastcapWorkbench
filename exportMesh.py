@@ -43,8 +43,7 @@ def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER):
             for j, point in enumerate(facet.Points):
                 fid.write(" ")
                 for i in range(3):
-                    FreeCAD.Console.PrintMessage(str(point[i]).rstrip())
-                    fid.write(" " + str(point[i]).rstrip())
+                    fid.write("  " + "".join(map(str,point[i])))
                     if isDiel == True:
                         center = center + Vector(point)
                         side = Vector(facet.Points[(j+1)%3]) - Vector(point)
