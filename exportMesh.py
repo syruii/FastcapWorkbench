@@ -42,13 +42,12 @@ def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER):
             avgSideLen = 0.0
             for j, point in enumerate(facet.Points):
                 fid.write(" ")
-                for i in range(3):
-                    fid.write("  " + "".join(map(str,point)))
-                    if isDiel == True:
+                fid.write("  " + " ".join(map(str,point)))
+                if isDiel == True:
+                    for i in range(3):
                         center = center + Vector(point)
                         side = Vector(facet.Points[(j+1)%3]) - Vector(point)
                         avgSideLen += side.Length
-                if isDiel == True:
                     center.multiply(1.0 / len(facet.Points))
                     scaledNormal = Vector(facet.Normal)
                     scaledNormal.multiply(avgSideLen / len(facet.Points))
@@ -96,7 +95,6 @@ class exportMeshCmd:
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
                             if dialog.isConductor == True:
                                 _ = export_mesh(obj.Name, obj, dialog.isConductor, path)
-                                FreeCAD.Console.PrintMessage(dialog.surroundingperm.TypeID)
                                 file.write("C " + obj.Name + ".qui " + str(dialog.surroundingperm) + " 0 0 0")
                             else:
                                 reference = export_mesh(obj.Name, obj, dialog.isConductor, path)

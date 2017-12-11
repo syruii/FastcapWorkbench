@@ -95,13 +95,13 @@ class Ui_Dialog(QtGui.QDialog):
     def create_conductor_interface(self):
         #self.inperm = self.innerPermBox.value
         #self.outperm = self.outerPermBox.value
-        self.surroundingperm = self.surroundingPermBox.value
+        self.surroundingperm = self.surroundingPermBox.value()
         self.isConductor = True
         self.accept()
 
     def create_dielectric_interface(self):
-        self.inperm = self.innerPermBox.value
-        self.outperm = self.outerPermBox.value
+        self.inperm = self.innerPermBox.value()
+        self.outperm = self.outerPermBox.value()
         self.isConductor = False
         self.accept()
 #Todo: Dialog closes immediately open being opened - garbage collected?
