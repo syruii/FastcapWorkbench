@@ -77,7 +77,7 @@ class Ui_Dialog(QtGui.QDialog):
         self.retranslateUi()
         self.tabWidget.setCurrentIndex(1)
         QtCore.QObject.connect(self.dielectricBox, QtCore.SIGNAL("accepted()"), self.create_conductor_interface)
-        QtCore.QObject.connect(self.conductorBox, QtCore.SIGNAL("accepted()"), self.create_conductor_interface)
+        QtCore.QObject.connect(self.conductorBox, QtCore.SIGNAL("accepted()"), self.create_dielectric_interface)
         # Todo: change this btw
         QtCore.QObject.connect(self.dielectricBox, QtCore.SIGNAL("rejected()"), self.hide)
         QtCore.QObject.connect(self.conductorBox, QtCore.SIGNAL("rejected()"), self.hide)
@@ -93,10 +93,16 @@ class Ui_Dialog(QtGui.QDialog):
         self.label_4.setText(QtGui.QApplication.translate("Dialog", self.obj, None, QtGui.QApplication.UnicodeUTF8))
 
     def create_conductor_interface(self):
-        self.inperm = self.innerPermBox.value
-        self.outperm = self.outerPermBox.value
+        #self.inperm = self.innerPermBox.value
+        #self.outperm = self.outerPermBox.value
         self.surroundingperm = self.surroundingPermBox.value
         self.isConductor = True
+        self.accept()
+
+    def create_dielectric_interface(self):
+        self.inperm = self.innerPermBox.value
+        self.outperm = self.outerPermBox.value
+        self.isConductor = False
         self.accept()
 #Todo: Dialog closes immediately open being opened - garbage collected?
 #Might need to redesign as one class, instead of the UI being a member object of meshCreator

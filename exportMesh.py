@@ -3,6 +3,64 @@ import os
 from Fastcap_dummy import path_icons
 from exportMeshWidget import Ui_Dialog
 from PySide import QtGui
+import random
+
+DEF_FOLDER = "."
+
+def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER):
+   
+    # check input in caller
+    
+    # add qui extension
+    filename = filename + ".qui"
+    
+    if not os.path.isdir(folder):
+        os.mkdir(folder)
+
+    with open(os.path.join(folder, filename), 'w') as fid:
+        if isDiel == True:
+            fid.write("0 dielectric definition file for mesh '" + meshobj.Label)
+        else:
+            fid.write("0 conductor definition file for mesh '" + meshobj.Label)
+        fid.write("' created using FreeCAD's Electromagnetic workbench script\n")
+        fid.write("\n")
+        
+        # export faces
+        # for dielectric, right now, assumes that any old normal surface vector can be chosen
+        # as the reference vector, should be more mathematically rigorous than that
+        refvectors = []
+        condName = meshobj.Label.replace(" ","_")
+        for facet in meshobj.Mesh.Facets:
+            if len(facet.Points) == 3:
+                fid.write("T " + condName)
+            elif len(facet.Points) == 4:
+                fid.write("Q " + condName)
+            else:
+                FreeCAD.Console.PrintError("Error: Unforseen number of mesh facet points: " + len(facet.Points) + ", skipping facet\n")
+                continue
+            center = Vector(0.0, 0.0, 0.0)
+            avgsideLen = 0.0
+            for j, point in enumerate(facet.Points):
+                fid.write(" ")
+                for i in range(3)
+                    fid.write(" " + str(point[i]))
+                    if isDiel == True:
+                        center = center + Vector(point)
+                        side = Vector(facet.Points[(j+1)%3]) - Vector(point)
+                        avgSideLen += side.Length
+                if isDiel == True:
+                    center.multiply(1.0 / len(facet.Points))
+                    scaledNormal = Vector(facet.Normal)
+                    scaledNormal.multiply(avgSideLen / len(facet.Points))
+                    refpoint = center + scaledNormal
+                    refvectors.append((refpoint.x, refpoint.y, refpoint.z))
+                fid.write("\n")
+        fid.close
+
+        if isDiel == True:
+            return random.choice(refvectors)
+        else:
+            return None
 
 
 class exportMeshCmd:
@@ -22,15 +80,28 @@ class exportMeshCmd:
                     # selected object
                     groupname = sel[0].Name
                     file.write("G " + groupname + "\n")
-                    for i, ob in enumerate(sel):
+                    for i, ob in enumerate(sel): ,
+                        if obj == None:
+                            return
+                        elif obj.TypeId != "Mesh::Feature":
+                            FreeCAD.Console.PrintError("Error: '" + obj.Name + "' is not an object of type 'Mesh::Feature'\n")
+                        continue
+
                         dialog = Ui_Dialog(obj.Name)
                         if dialog.exec_():
-                            print(dialog.isConductor)
                             if i > 0:
                                 # if not the first line, append the '+' to the previous conductor definition
                                 file.write(" +\n")
+                            
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
-                    # finish the previous line
+                            if dialog.isConductor == True:
+                                reference = export_mesh(obj.Name, obj, dialog.isConductor, path)
+                                file.write("C " + obj.Name + ".qui " + dialog.surroundingperm + " 0 0 0"
+                            else:
+                                _ = export_mesh(obj.Name, obj, dialog.isConductor, path)
+                                file.write(" D" + obj.Name + ".qui " + dialog.inperm)
+                                file.write(" " + dialog.outperm + " 0 0 0 " + str(reference))
+                    # finish the last line
                     file.write("\n")
                 except Exception, e:
                     FreeCAD.Console.PrintError("Error in generating the mesh or writing to the file: " + str(e))
