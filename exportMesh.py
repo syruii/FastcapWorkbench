@@ -80,7 +80,7 @@ class exportMeshCmd:
                     # selected object
                     groupname = sel[0].Name
                     file.write("G " + groupname + "\n")
-                    for i, ob in enumerate(sel):
+                    for i, obJ in enumerate(sel):
                         if obj == None:
                             return
                         elif obj.TypeId != "Mesh::Feature":
@@ -96,7 +96,7 @@ class exportMeshCmd:
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
                             if dialog.isConductor == True:
                                 reference = export_mesh(obj.Name, obj, dialog.isConductor, path)
-                                file.write("C " + obj.Name + ".qui " + dialog.surroundingperm + " 0 0 0"
+                                file.write("C " + obj.Name + ".qui " + dialog.surroundingperm + " 0 0 0")
                             else:
                                 _ = export_mesh(obj.Name, obj, dialog.isConductor, path)
                                 file.write(" D" + obj.Name + ".qui " + dialog.inperm)
@@ -122,9 +122,7 @@ class exportMeshCmd:
         # writing file subheading for writing list file
         # write function that appends appropriately
     def GetResources(self):
-        return {'Pixmap': os.path.join(path_icons, 'exportMeshIcon.png'), 'MenuText': 'Export mesh as qui', 'ToolTip': 'Exports the currently selected mesh to a fastcap 
-
-compatible qui file'}
+        return {'Pixmap': os.path.join(path_icons, 'exportMeshIcon.png'), 'MenuText': 'Export mesh as qui', 'ToolTip': 'Exports the currently selected mesh to a fastcap compatible qui file'}
 
 FreeCADGui.addCommand('exportMesh_Cmd', exportMeshCmd())
 
