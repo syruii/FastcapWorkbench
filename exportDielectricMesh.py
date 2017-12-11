@@ -58,7 +58,7 @@ class exportDielectricMeshCmd:
     def GetResources(self):
         return {'Pixmap': os.path.join(path_icons, 'exportDieletricMeshIcon.png'), 'MenuText': 'Export dieletric mesh as qui', 'ToolTip': 'Exports the currently selected mesh(es) to a fastcap compatible qui file as a dielectric interface'}
 
-FreeCADGui.addCommand('exportDielectricMesh_Cmd', exportDieletricMeshCmd())
+FreeCADGui.addCommand('exportDielectricMesh_Cmd', exportDielectricMeshCmd())
 
 # Todo: add the actual command, and add dialog boxes to select options
 # Todo: the function should be able to take in a multiple selection of meshes and output to a single qui file

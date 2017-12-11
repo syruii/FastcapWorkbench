@@ -1,7 +1,7 @@
 import FreeCAD, FreeCADGui
 import os
 from Fastcap_dummy import path_icons
-from exportMeshWidget import Ui_Dialog
+from exportCondMeshWidget import Ui_Dialog
 from createQui import export_mesh
 
 class exportCondMeshCmd:
