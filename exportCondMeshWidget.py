@@ -17,7 +17,7 @@ class Ui_Dialog(QtGui.QDialog):
     def setupUi(self, currentObj):
         self.obj = currentObj
         self.setObjectName("Dialog")
-        self.resize(376, 258)
+        self.resize(376, 180)
         #self.tabWidget = QtGui.QTabWidget(self)
         #self.tabWidget.setGeometry(QtCore.QRect(10, 20, 361, 211))
         font = QtGui.QFont()
