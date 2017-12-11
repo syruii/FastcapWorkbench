@@ -76,7 +76,7 @@ class Ui_Dialog(QtGui.QDialog):
 
         self.retranslateUi()
         self.tabWidget.setCurrentIndex(1)
-        QtCore.QObject.connect(self.dielectricBox, QtCore.SIGNAL("accepted()"), self.create_dieletric_interface)
+        QtCore.QObject.connect(self.dielectricBox, QtCore.SIGNAL("accepted()"), self.create_dielectric_interface)
         QtCore.QObject.connect(self.conductorBox, QtCore.SIGNAL("accepted()"), self.create_conductor_interface)
         # Todo: change this btw
         QtCore.QObject.connect(self.dielectricBox, QtCore.SIGNAL("rejected()"), self.hide)
