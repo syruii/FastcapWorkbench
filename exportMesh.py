@@ -39,7 +39,7 @@ def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER):
                 FreeCAD.Console.PrintError("Error: Unforseen number of mesh facet points: " + len(facet.Points) + ", skipping facet\n")
                 continue
             center = Vector(0.0, 0.0, 0.0)
-            avgsideLen = 0.0
+            avgSideLen = 0.0
             for j, point in enumerate(facet.Points):
                 fid.write(" ")
                 for i in range(3):
