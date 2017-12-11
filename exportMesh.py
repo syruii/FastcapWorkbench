@@ -42,7 +42,7 @@ def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER):
             avgsideLen = 0.0
             for j, point in enumerate(facet.Points):
                 fid.write(" ")
-                for i in range(3)
+                for i in range(3):
                     fid.write(" " + str(point[i]))
                     if isDiel == True:
                         center = center + Vector(point)
@@ -80,7 +80,7 @@ class exportMeshCmd:
                     # selected object
                     groupname = sel[0].Name
                     file.write("G " + groupname + "\n")
-                    for i, ob in enumerate(sel): ,
+                    for i, ob in enumerate(sel):
                         if obj == None:
                             return
                         elif obj.TypeId != "Mesh::Feature":
