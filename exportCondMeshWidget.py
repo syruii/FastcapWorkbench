@@ -75,7 +75,7 @@ class Ui_Dialog(QtGui.QDialog):
         self.label_4.setObjectName("label_4")
 
         self.retranslateUi()
-        self.tabWidget.setCurrentIndex(1)
+        #self.tabWidget.setCurrentIndex(1)
         #QtCore.QObject.connect(self.dielectricBox, QtCore.SIGNAL("accepted()"), self.create_dielectric_interface)
         QtCore.QObject.connect(self.conductorBox, QtCore.SIGNAL("accepted()"), self.create_interface)
         # Todo: change this btw
