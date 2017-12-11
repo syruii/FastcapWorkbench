@@ -58,6 +58,9 @@ class showNormalsCmd:
             # add the vector normals visualization to the view
             # Note: could also use Part.show(normals) but in this case we could
             # not give the (permanent) name to the object, only change the label afterwards
+            if len(arrows) > 40:
+                step = len(arrows)/float(40)
+                arrows = [arrows[int(x*step)] for x in range(40)]
             normals = Part.makeCompound(arrows)
             normalobj = FreeCAD.ActiveDocument.addObject("Part::Feature", obj.Name + "_normals")
             normalobj.Shape = normals

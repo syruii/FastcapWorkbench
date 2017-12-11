@@ -98,8 +98,8 @@ class exportMeshCmd:
                                 file.write("C " + obj.Name + ".qui " + str(dialog.surroundingperm) + " 0 0 0")
                             else:
                                 reference = export_mesh(obj.Name, obj, dialog.isConductor, path)
-                                file.write(" D" + obj.Name + ".qui " + str(dialog.inperm))
-                                file.write(" " + str(dialog.outperm) + " 0 0 0 " + " ".join(map(str, reference)))
+                                file.write(" D" + obj.Name + ".qui " + str(dialog.outperm))
+                                file.write(" " + str(dialog.inperm) + " 0 0 0 " + " ".join(map(str, reference)))
                     # finish the last line
                     file.write("\n")
                 except Exception, e:
