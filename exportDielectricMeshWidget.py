@@ -17,7 +17,7 @@ class Ui_Dialog(QtGui.QDialog):
     def setupUi(self, currentObj):
         self.obj = currentObj
         self.setObjectName("Dialog")
-        self.resize(376, 180)
+        self.resize(360, 180)
         #self.tabWidget = QtGui.QTabWidget(self)
         #self.tabWidget.setGeometry(QtCore.QRect(10, 20, 361, 211))
         #font = QtGui.QFont()
@@ -37,7 +37,7 @@ class Ui_Dialog(QtGui.QDialog):
         #font.setFamily("Helvetica")
         #self.label_3.setFont(font)
         #self.label_3.setObjectName("label_3")
-        self.surroundingPermBox = QtGui.QDoubleSpinBox(self.tab)
+        self.surroundingPermBox = QtGui.QDoubleSpinBox(self)
         self.surroundingPermBox.setGeometry(QtCore.QRect(240, 30, 101, 21))
         self.surroundingPermBox.setObjectName("surroundingPermBox")
         #self.tabWidget.addTab(self.tab, "")
