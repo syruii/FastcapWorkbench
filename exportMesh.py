@@ -43,7 +43,7 @@ def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER):
             for j, point in enumerate(facet.Points):
                 fid.write(" ")
                 for i in range(3):
-                    fid.write(" " + str(point[i]))
+                    fid.write(" " + str(point[i]).rstrip())
                     if isDiel == True:
                         center = center + Vector(point)
                         side = Vector(facet.Points[(j+1)%3]) - Vector(point)
@@ -96,11 +96,11 @@ class exportMeshCmd:
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
                             if dialog.isConductor == True:
                                 reference = export_mesh(obj.Name, obj, dialog.isConductor, path)
-                                file.write("C " + obj.Name + ".qui " + dialog.surroundingperm + " 0 0 0")
+                                file.write("C " + obj.Name + ".qui " + str(dialog.surroundingperm) + " 0 0 0")
                             else:
                                 _ = export_mesh(obj.Name, obj, dialog.isConductor, path)
-                                file.write(" D" + obj.Name + ".qui " + dialog.inperm)
-                                file.write(" " + dialog.outperm + " 0 0 0 " + str(reference))
+                                file.write(" D" + obj.Name + ".qui " + str(dialog.inperm))
+                                file.write(" " + str(dialog.outperm) + " 0 0 0 " + " ".join(map(str,a)))
                     # finish the last line
                     file.write("\n")
                 except Exception, e:
