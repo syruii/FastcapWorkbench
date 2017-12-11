@@ -80,12 +80,12 @@ class exportMeshCmd:
                     # selected object
                     groupname = sel[0].Name
                     file.write("G " + groupname + "\n")
-                    for i, obJ in enumerate(sel):
+                    for i, obj in enumerate(sel):
                         if obj == None:
                             return
                         elif obj.TypeId != "Mesh::Feature":
                             FreeCAD.Console.PrintError("Error: '" + obj.Name + "' is not an object of type 'Mesh::Feature'\n")
-                        continue
+                            continue
 
                         dialog = Ui_Dialog(obj.Name)
                         if dialog.exec_():
