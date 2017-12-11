@@ -6,8 +6,8 @@ class FastCapWorkBench(Workbench):
 
     def Initialize(self):
         "This function is executed when FreeCAD starts"
-        import exportMesh, importMesh, showNormals # import here all the needed files that create your FreeCAD commands
-        self.list = ["exportMesh_Cmd", "importMesh_Cmd", "showNormals_Cmd"]  # A list of command names created in the line above
+        import exportCondMesh, exportDielectriMesh, importMesh, showNormals # import here all the needed files that create your FreeCAD commands
+        self.list = ["exportCondMesh_Cmd", "exportDielectricMesh_Cmd", "importMesh_Cmd", "showNormals_Cmd"]  # A list of command names created in the line above
         self.appendToolbar("My Commands", self.list)  # creates a new toolbar with your commands
         #self.appendMenu("My New Menu", self.list)  # creates a new menu
         #self.appendMenu(["An existing Menu", "My submenu"], self.list)  # appends a submenu to an existing menu
