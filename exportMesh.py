@@ -42,7 +42,7 @@ def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER):
             avgSideLen = 0.0
             for j, point in enumerate(facet.Points):
                 fid.write(" ")
-                fid.write("  " + " ".join(map(str,point)))
+                fid.write(" ".join(map(str,point)))
                 if isDiel == True:
                     for i in range(3):
                         center = center + Vector(point)
@@ -53,7 +53,7 @@ def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER):
                     scaledNormal.multiply(avgSideLen / len(facet.Points))
                     refpoint = center + scaledNormal
                     refvectors.append((refpoint.x, refpoint.y, refpoint.z))
-                fid.write("\n")
+            fid.write("\n")
         fid.close
 
         if isDiel == True:
