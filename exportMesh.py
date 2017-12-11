@@ -43,6 +43,7 @@ def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER):
             for j, point in enumerate(facet.Points):
                 fid.write(" ")
                 for i in range(3):
+                    FreeCAD.Console.PrintMessage(str(point[i]).rstrip())
                     fid.write(" " + str(point[i]).rstrip())
                     if isDiel == True:
                         center = center + Vector(point)
@@ -96,6 +97,7 @@ class exportMeshCmd:
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
                             if dialog.isConductor == True:
                                 reference = export_mesh(obj.Name, obj, dialog.isConductor, path)
+                                FreeCAD.Console.PrintMessage(dialog.surroundingperm.TypeID)
                                 file.write("C " + obj.Name + ".qui " + str(dialog.surroundingperm) + " 0 0 0")
                             else:
                                 _ = export_mesh(obj.Name, obj, dialog.isConductor, path)
