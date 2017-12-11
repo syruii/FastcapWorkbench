@@ -63,7 +63,7 @@ class Ui_Dialog(QtGui.QDialog):
         self.innerPermBox = QtGui.QDoubleSpinBox(self)
         self.innerPermBox.setGeometry(QtCore.QRect(240, 30, 101, 21))
         self.innerPermBox.setObjectName("innerPermBox")
-        self.outerPermBox = QtGui.QDoubleSpinBox(sel)
+        self.outerPermBox = QtGui.QDoubleSpinBox(self)
         self.outerPermBox.setGeometry(QtCore.QRect(240, 90, 101, 21))
         self.outerPermBox.setObjectName("outerPermBox")
         #self.tabWidget.addTab(self.tab_2, "")
@@ -84,7 +84,7 @@ class Ui_Dialog(QtGui.QDialog):
         QtCore.QMetaObject.connectSlotsByName(self)
 
     def retranslateUi(self):
-        self.setWindowTitle(QtGui.QApplication.translate("Dialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
+        self.setWindowTitle(QtGui.QApplication.translate("Dialog", "Define the dielectric interface permitivities", None, QtGui.QApplication.UnicodeUTF8))
         #self.label_3.setText(QtGui.QApplication.translate("Dialog", "Surrounding surface permitivity", None, QtGui.QApplication.UnicodeUTF8))
         #self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("Dialog", "Conductor Interface", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Dialog", "Innner surface permitivity", None, QtGui.QApplication.UnicodeUTF8))
