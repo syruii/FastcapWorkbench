@@ -54,7 +54,7 @@ class Ui_Dialog(QtGui.QDialog):
         font.setFamily("Helvetica")
         self.label.setFont(font)
         self.label.setObjectName("label")
-        self.label_2 = QtGui.QLabel(sel)
+        self.label_2 = QtGui.QLabel(self)
         self.label_2.setGeometry(QtCore.QRect(20, 70, 161, 61))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
