@@ -2,6 +2,7 @@ import FreeCAD, FreeCADGui
 import os
 from Fastcap_dummy import path_icons
 from exportCondMeshWidget import Ui_Dialog
+from enterName import Ui_Form
 from createQui import export_mesh
 
 class exportCondMeshCmd:
@@ -19,7 +20,12 @@ class exportCondMeshCmd:
                 try:
                     # add ui later to specify name, but currently just get name of first
                     # selected object
-                    groupname = sel[0].Name
+                    form = Ui_Form()
+                    if form.exec_():
+                        groupname = form.groupName
+                    else:
+                        raise RuntimeError('Cancelled at name entry')
+
                     file.write("G " + groupname + "\n")
                     for i, obj in enumerate(sel):
                         if obj == None:
@@ -36,7 +42,7 @@ class exportCondMeshCmd:
                             
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
                             #if dialog.isConductor == True:
-                            _ = export_mesh(obj.Name, obj, False, path)
+                            _ = export_mesh(groupname, obj, False, path)
                             file.write("C " + obj.Name + ".qui " + str(dialog.surroundingperm) + " 0 0 0")
                             #else:
                             #    reference = export_mesh(obj.Name, obj, True, path)

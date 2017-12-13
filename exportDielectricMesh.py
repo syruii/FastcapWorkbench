@@ -56,7 +56,7 @@ class exportDielectricMeshCmd:
         # writing file subheading for writing list file
         # write function that appends appropriately
     def GetResources(self):
-        return {'Pixmap': os.path.join(path_icons, 'exportDieletricMeshIcon.png'), 'MenuText': 'Export dieletric mesh as qui', 'ToolTip': 'Exports the currently selected mesh(es) to a fastcap compatible qui file as a dielectric interface'}
+        return {'Pixmap': os.path.join(path_icons, 'exportDielectricMeshIcon.png'), 'MenuText': 'Export dieletric mesh as qui', 'ToolTip': 'Exports the currently selected mesh(es) to a fastcap compatible qui file as a dielectric interface'}
 
 FreeCADGui.addCommand('exportDielectricMesh_Cmd', exportDielectricMeshCmd())
 
