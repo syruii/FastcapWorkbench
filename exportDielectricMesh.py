@@ -26,17 +26,12 @@ class exportDielectricMeshCmd:
 
                         dialog = Ui_Dialog(obj.Name)
                         if dialog.exec_():
-                            if i > 0:
-                                # if not the first line, append the '+' to the previous conductor definition
-                                file.write(" +\n")
-                            
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
                             #if dialog.isConductor == True:
                             reference = export_mesh(obj.Name, obj, True, path)
                             file.write("D " + obj.Name + ".qui " + str(dialog.outperm))
                             file.write(" " + str(dialog.inperm) + " 0 0 0 " + " ".join(map(str, reference)))
-                    # finish the last line
-                    file.write("\n")
+                            file.write("\n")
                 except Exception, e:
                     FreeCAD.Console.PrintError("Error in generating the mesh or writing to the file: " + str(e))
                 finally:
