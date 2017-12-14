@@ -84,7 +84,7 @@ class Ui_Dialog(QtGui.QDialog):
         QtCore.QMetaObject.connectSlotsByName(self)
 
     def retranslateUi(self):
-        self.setWindowTitle(QtGui.QApplication.translate("Dialog", "Define the permitivity surrounding conductor " + self.obj , None, QtGui.QApplication.UnicodeUTF8))
+        self.setWindowTitle(QtGui.QApplication.translate("Dialog", "Current object: " + self.obj , None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Dialog", "Surrounding surface permitivity:", None, QtGui.QApplication.UnicodeUTF8))
         #self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("Dialog", "Conductor Interface", None, QtGui.QApplication.UnicodeUTF8))
         #self.label.setText(QtGui.QApplication.translate("Dialog", "Innner surface permitivity", None, QtGui.QApplication.UnicodeUTF8))
