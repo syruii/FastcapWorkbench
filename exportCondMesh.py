@@ -42,8 +42,8 @@ class exportCondMeshCmd:
                             
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
                             #if dialog.isConductor == True:
-                            _ = export_mesh(groupname, obj, False, path)
-                            file.write("C " + groupname + " " + str(dialog.surroundingperm) + " 0 0 0")
+                            _ = export_mesh(groupname, obj, False, path, groupname)
+                            file.write("C " + obj.Name + ".qui " + str(dialog.surroundingperm) + " 0 0 0")
                             #else:
                             #    reference = export_mesh(obj.Name, obj, True, path)
                             #    file.write("D " + obj.Name + ".qui " + str(dialog.outperm))

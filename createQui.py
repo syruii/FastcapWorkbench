@@ -4,7 +4,7 @@ from FreeCAD import Vector
 
 DEF_FOLDER = "."
 
-def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER):
+def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER, groupName=None):
    
     # check input in caller
     
@@ -26,7 +26,10 @@ def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER):
         # for dielectric, right now, assumes that any old normal surface vector can be chosen
         # as the reference vector, should be more mathematically rigorous than that
         refvectors = []
-        condName = meshobj.Label.replace(" ","_")
+        if groupName is None:
+            condName = meshobj.Label.replace(" ","_")
+        else:
+            condName = groupName
         for facet in meshobj.Mesh.Facets:
             if len(facet.Points) == 3:
                 fid.write("T " + condName)
