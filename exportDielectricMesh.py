@@ -24,7 +24,7 @@ class exportDielectricMeshCmd:
                             FreeCAD.Console.PrintError("Error: '" + obj.Name + "' is not an object of type 'Mesh::Feature'\n")
                             continue
 
-                        dialog = Ui_Dialog(obj.Name)
+                        dialog = Ui_Dialog(obj.Label)
                         if dialog.exec_():
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
                             #if dialog.isConductor == True:

@@ -34,7 +34,7 @@ class exportCondMeshCmd:
                             FreeCAD.Console.PrintError("Error: '" + obj.Name + "' is not an object of type 'Mesh::Feature'\n")
                             continue
 
-                        dialog = Ui_Dialog(obj.Name)
+                        dialog = Ui_Dialog(obj.Label)
                         if dialog.exec_():
                             if i > 0:
                                 # if not the first line, append the '+' to the previous conductor definition
