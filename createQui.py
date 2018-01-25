@@ -29,7 +29,7 @@ def export_mesh(filename, meshobj=None, isDiel=False, folder=DEF_FOLDER, groupNa
         if groupName is None:
             condName = meshobj.Label.replace(" ","_")
         else:
-            condName = groupName
+            condName = groupName.replace(" ", "_")
         for facet in meshobj.Mesh.Facets:
             if len(facet.Points) == 3:
                 fid.write("T " + condName)
