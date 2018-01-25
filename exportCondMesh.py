@@ -39,11 +39,13 @@ class exportCondMeshCmd:
                             if i > 0:
                                 # if not the first line, append the '+' to the previous conductor definition
                                 file.write(" +\n")
-                            
+                            # clean obj.Label so it doesn't break fastcap
+                            quiFileName = obj.Label.replace(" ", "_")
+                            quiFileName = quiFileName.replace("\\", "-")
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
                             #if dialog.isConductor == True:
-                            _ = export_mesh(obj.Label, obj, False, path, groupname)
-                            file.write("C " + obj.Label + ".qui " + str(dialog.surroundingperm) + " 0 0 0")
+                            _ = export_mesh(quiFileName, obj, False, path, groupname)
+                            file.write("C " + quiFileName + ".qui " + str(dialog.surroundingperm) + " 0 0 0")
                             #else:
                             #    reference = export_mesh(obj.Name, obj, True, path)
                             #    file.write("D " + obj.Name + ".qui " + str(dialog.outperm))
