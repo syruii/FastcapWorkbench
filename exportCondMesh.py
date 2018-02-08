@@ -22,7 +22,7 @@ class exportCondMeshCmd:
                     # selected object
                     form = Ui_Form()
                     if form.exec_():
-                        groupname = form.groupName
+                        groupname = form.groupName.replace(" ", "_")
                     else:
                         raise RuntimeError('Cancelled at name entry')
 
