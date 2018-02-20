@@ -24,12 +24,14 @@ class exportDielectricMeshCmd:
                             FreeCAD.Console.PrintError("Error: '" + obj.Name + "' is not an object of type 'Mesh::Feature'\n")
                             continue
 
-                        dialog = Ui_Dialog(obj.Name)
+                        dialog = Ui_Dialog(obj.Label)
                         if dialog.exec_():
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
                             #if dialog.isConductor == True:
-                            reference = export_mesh(obj.Name, obj, True, path)
-                            file.write("D " + obj.Name + ".qui " + str(dialog.outperm))
+                            quiFileName = obj.Label.replace(" ", "_")
+                            quiFileName = quiFileName.replace("\\", "-")
+                            reference = export_mesh(quiFileName, obj, True, path)
+                            file.write("D " + quiFileName + ".qui " + str(dialog.outperm))
                             file.write(" " + str(dialog.inperm) + " 0 0 0 " + " ".join(map(str, reference)))
                             file.write("\n")
                 except Exception, e:

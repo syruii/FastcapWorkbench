@@ -22,7 +22,7 @@ class exportCondMeshCmd:
                     # selected object
                     form = Ui_Form()
                     if form.exec_():
-                        groupname = form.groupName
+                        groupname = form.groupName.replace(" ", "_")
                     else:
                         raise RuntimeError('Cancelled at name entry')
 
@@ -34,16 +34,18 @@ class exportCondMeshCmd:
                             FreeCAD.Console.PrintError("Error: '" + obj.Name + "' is not an object of type 'Mesh::Feature'\n")
                             continue
 
-                        dialog = Ui_Dialog(obj.Name)
+                        dialog = Ui_Dialog(obj.Label)
                         if dialog.exec_():
                             if i > 0:
                                 # if not the first line, append the '+' to the previous conductor definition
                                 file.write(" +\n")
-                            
+                            # clean obj.Label so it doesn't break fastcap
+                            quiFileName = obj.Label.replace(" ", "_")
+                            quiFileName = quiFileName.replace("\\", "-")
                             # write the C objName.qui <perm> <perm?> <transpose> by reading from dialog
                             #if dialog.isConductor == True:
-                            _ = export_mesh(obj.Name, obj, False, path, groupname)
-                            file.write("C " + obj.Name + ".qui " + str(dialog.surroundingperm) + " 0 0 0")
+                            _ = export_mesh(quiFileName, obj, False, path, groupname)
+                            file.write("C " + quiFileName + ".qui " + str(dialog.surroundingperm) + " 0 0 0")
                             #else:
                             #    reference = export_mesh(obj.Name, obj, True, path)
                             #    file.write("D " + obj.Name + ".qui " + str(dialog.outperm))
